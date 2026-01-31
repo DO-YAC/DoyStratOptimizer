@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11206.111
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoyStratOptimizer_UI", "DoyStratOptimizer_UI\DoyStratOptimizer_UI.csproj", "{BCEDF0DA-2E38-4554-A462-DDA281C28A95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoyStratOptimizer_Tester", "DoyStratOptimizer_Tester\DoyStratOptimizer_Tester.csproj", "{03FC7B50-6406-40F8-AC1C-5FF37C8AF229}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoyStratOptimizer_Common", "DoyStratOptimizer_Common\DoyStratOptimizer_Common.csproj", "{DA5C59DB-5C47-42BB-8D96-2D1020A272BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoyStratOptimizer_Enhancer", "DoyStratOptimizer_Enhancer\DoyStratOptimizer_Enhancer.csproj", "{10011788-E0FF-E4C0-6771-513AFAFE8302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoyStratOptimizer_ConsoleInterface", "DoyStratOptimizer_ConsoleInterface\DoyStratOptimizer_ConsoleInterface.csproj", "{F99DA0C3-1F91-429A-A8D7-834DAD62CE2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCEDF0DA-2E38-4554-A462-DDA281C28A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEDF0DA-2E38-4554-A462-DDA281C28A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEDF0DA-2E38-4554-A462-DDA281C28A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEDF0DA-2E38-4554-A462-DDA281C28A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03FC7B50-6406-40F8-AC1C-5FF37C8AF229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03FC7B50-6406-40F8-AC1C-5FF37C8AF229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03FC7B50-6406-40F8-AC1C-5FF37C8AF229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03FC7B50-6406-40F8-AC1C-5FF37C8AF229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA5C59DB-5C47-42BB-8D96-2D1020A272BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5C59DB-5C47-42BB-8D96-2D1020A272BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5C59DB-5C47-42BB-8D96-2D1020A272BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5C59DB-5C47-42BB-8D96-2D1020A272BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10011788-E0FF-E4C0-6771-513AFAFE8302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10011788-E0FF-E4C0-6771-513AFAFE8302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10011788-E0FF-E4C0-6771-513AFAFE8302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10011788-E0FF-E4C0-6771-513AFAFE8302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F99DA0C3-1F91-429A-A8D7-834DAD62CE2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F99DA0C3-1F91-429A-A8D7-834DAD62CE2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F99DA0C3-1F91-429A-A8D7-834DAD62CE2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F99DA0C3-1F91-429A-A8D7-834DAD62CE2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE9919C6-DAD8-4BCC-8E0F-CA8B65C21BBC}
+	EndGlobalSection
+EndGlobal

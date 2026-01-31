@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DoyStratOptimizer_Common\DoyStratOptimizer_Common.csproj" />
+    <ProjectReference Include="..\DoyStratOptimizer_Tester\DoyStratOptimizer_Tester.csproj" />
+  </ItemGroup>
+
+</Project>
