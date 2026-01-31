@@ -3,7 +3,7 @@
 namespace DoyStratOptimizer_Common.Models;
 
 public record EnhancerConfig(
-    decimal[] InitialParameters,
+    InitialParameterModel[] InitialParameters,
     Assembly StrategyAssebmly,
     LineModel[] HistoricalData, 
     decimal TargetScore,

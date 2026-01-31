@@ -117,12 +117,12 @@ public class Enhancer
     {
         var population = new List<decimal[]>
         {
-            mConfig.InitialParameters
+            mConfig.InitialParameters.Select(x => x.InitialValue).ToArray()
         };
 
         for (int i = 0; i < mConfig.Population -1; i++)
         {
-            population.Add(MutateParameters(mConfig.InitialParameters));
+            population.Add(MutateParameters([.. mConfig.InitialParameters.Select(x => x.InitialValue)]));
         }
         return population;
     }
@@ -133,8 +133,23 @@ public class Enhancer
         var mutatedParameters = new decimal[parameters.Length];
         for (int i = 0; i < parameters.Length; i++)
         {
-            var mutation = ((decimal)random.NextDouble() * 2 - 1) * mConfig.MutationFactor;
-            mutatedParameters[i] = parameters[i] + mutation;
+            var hasMax = mConfig.InitialParameters[i].MaxValue.HasValue;
+            var hasMin = mConfig.InitialParameters[i].MinValue.HasValue;
+
+            bool polarity = random.Next(2) == 1;
+            var mutation = ((decimal)random.NextDouble()) * mConfig.MutationFactor;
+            
+            if (hasMax && parameters[i] + mutation > mConfig.InitialParameters[i].MaxValue)
+            {
+                polarity = false;
+            }
+
+            if (hasMin && parameters[i] - mutation < mConfig.InitialParameters[i].MinValue)
+            {
+                polarity = true;
+            }
+
+            mutatedParameters[i] = polarity ? parameters[i] + mutation : parameters[i] - mutation;
         }
         return mutatedParameters;
     }

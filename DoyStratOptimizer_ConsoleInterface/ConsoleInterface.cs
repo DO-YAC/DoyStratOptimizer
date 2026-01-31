@@ -146,7 +146,7 @@ public class ConsoleInterface()
         while (true)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Enter the desired mutationfactor(0.0 - 5.0): ");
+            Console.WriteLine("Enter the desired mutationfactor: ");
 
             if (!decimal.TryParse(Console.ReadLine(), out var inputMutationFactor))
             {
@@ -156,7 +156,7 @@ public class ConsoleInterface()
                 continue;
             }
 
-            if (inputMutationFactor < 0 || inputMutationFactor > 5)
+            if (inputMutationFactor < 0)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Error - Mutationfactor out of bounds.");
@@ -171,12 +171,23 @@ public class ConsoleInterface()
 
         var parameterNames = CreateParameterNameArray(strategyAssembly);
 
-        List<decimal> parameterValues = [];
+        List<InitialParameterModel> parameterValues = [];
 
         foreach (var parameterName in parameterNames)
         {
             Console.WriteLine($"Enter initial value for '{parameterName}': ");
-            parameterValues.Add(decimal.Parse(Console.ReadLine()!));
+            var initialValue = decimal.Parse(Console.ReadLine()!);
+            Console.WriteLine($"Enter minimal value for '{parameterName}'. Leave blank for no restriction: ");
+            decimal? minValue = decimal.TryParse(Console.ReadLine(), out var parsedMinValue) ? parsedMinValue : null;
+            Console.WriteLine($"Enter maximum value for '{parameterName}'. Leave blank for no restriction: ");
+            decimal? maxValue = decimal.TryParse(Console.ReadLine(), out var parsedMaxValue) ? parsedMaxValue : null;
+
+            var parameterInfo = new InitialParameterModel(
+                initialValue,
+                maxValue,
+                minValue);
+
+            parameterValues.Add(parameterInfo);
         }
 
         var enhancerConfig = new EnhancerConfig([.. parameterValues], strategyAssembly, lines, targetScore, population, mutationFactor);
