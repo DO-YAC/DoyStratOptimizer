@@ -66,16 +66,27 @@ public class EvaluationCalculator
     {
         const decimal maxScore = 1000;
         const decimal profitNormalizationBase = 500000;
+        const decimal optimalCandlesPerProfitableTrade = 1800;
         
-        const decimal timeDrawdownWeight = 0.35m;
-        const decimal maxDrawdownWeight = 0.35m;
-        const decimal pnlPenaltyWeight = 0.20m;
+        const decimal timeDrawdownWeight = 0.30m;
+        const decimal maxDrawdownWeight = 0.30m;
+        const decimal pnlPenaltyWeight = 0.18m;
         
         const decimal timeInProfitWeight = 0.05m;
         const decimal maxProfitWeight = 0.03m;
         const decimal pnlRewardWeight = 0.02m;
+        const decimal tradeEfficiencyWeight = 0.12m;
         
         decimal totalCandles = mHistoricalData.Length;
+
+        // Calculate profitable trades count
+        int profitableTradesCount = evaluationResponse.TakenDecisions.Count(d => d.IsProfitable == true);
+        
+        // Calculate trade efficiency (candles per profitable trade)
+        decimal candlesPerProfitableTrade = profitableTradesCount > 0 ? totalCandles / profitableTradesCount : totalCandles;
+        decimal tradeEfficiencyNormalized = profitableTradesCount > 0 
+            ? 1 - Math.Min(Math.Abs(candlesPerProfitableTrade - optimalCandlesPerProfitableTrade) / optimalCandlesPerProfitableTrade, 1) 
+            : 0;
 
         // Normalize metrics to 0-1 range
         decimal timeInDrawdownRatio = totalCandles > 0 ? (decimal)evaluationResponse.TimeInDrawdown / totalCandles : 0;
@@ -93,10 +104,11 @@ public class EvaluationCalculator
         decimal timeInProfitScore = timeInProfitNormalized * timeInProfitWeight;
         decimal maxProfitScore = maxProfitNormalized * maxProfitWeight;
         decimal pnlReward = Math.Min(pnlNormalized, 1) * pnlRewardWeight;
+        decimal tradeEfficiencyScore = tradeEfficiencyNormalized * tradeEfficiencyWeight;
 
         // Combine scores
         decimal totalScore = (timeDrawdownScore + maxDrawdownScore + pnlPenalty + 
-                              timeInProfitScore + maxProfitScore + pnlReward) * maxScore;
+                              timeInProfitScore + maxProfitScore + pnlReward + tradeEfficiencyScore) * maxScore;
 
         // Ensure score is within 0-1000 range
         evaluationResponse.Score = Math.Max(0, Math.Min(totalScore, maxScore));
@@ -160,6 +172,8 @@ public class EvaluationCalculator
         {
             mEvaluationResult.MaxDrawdown = overAllPnL * -1;
         }
+
+        mEvaluationResult.TakenDecisions.Last().IsProfitable = mOpenPosition.PnL > 0;
 
         mOpenPosition = null;
 
