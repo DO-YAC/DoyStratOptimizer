@@ -13,6 +13,8 @@ public class Enhancer
     private readonly ConcurrentDictionary<decimal[], EvaluationResponse> mParameterResults = new();
     private readonly OptimizationConsoleInfo mConsoleInfo = new();
 
+    private bool mCanceledOptimization = false;
+
     public int CurrentGeneration { get; private set; } = 0;
 
     public Enhancer(EnhancerConfig config)
@@ -39,6 +41,19 @@ public class Enhancer
 
     private void RunOptimizationLoop(List<decimal[]> population, TaskCompletionSource<KeyValuePair<decimal[], EvaluationResponse>> tcs)
     {
+        Task.Run(() =>
+        {
+            while (true)
+            {
+                var keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.B)
+                {
+                    mCanceledOptimization = true;
+                    break;
+                }
+            }
+        });
+
         while (true)
         {
             var options = new ParallelOptions()
@@ -52,6 +67,16 @@ public class Enhancer
             });
 
             if (ScoreReachedTarget())
+            {
+                var kvp = mParameterResults
+                    .OrderByDescending(kvp => kvp.Value.Score)
+                    .First();
+
+                tcs.SetResult(kvp);
+                break;
+            }
+
+            if (mCanceledOptimization)
             {
                 var kvp = mParameterResults
                     .OrderByDescending(kvp => kvp.Value.Score)
@@ -78,6 +103,7 @@ public class Enhancer
     private void DisplayConsoleInfo()
     {
         Console.Clear();
+        Console.WriteLine("Press 'B' to cancel preemptively.");
         Console.WriteLine($"Generation: {mConsoleInfo.CurrentGeneration}");
         Console.WriteLine($"Max Score: {mConsoleInfo.MaxScore}");
         Console.WriteLine($"Best Parameters: {string.Join(", ", mConsoleInfo.BestParameters)}");
