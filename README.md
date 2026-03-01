@@ -1,6 +1,6 @@
 # DoyStratOptimizer
 
-**DoyStratOptimizer** is a project within the **DoyVestment ecosystem** and is designed for the automated optimization of trading strategies based on **technical analysis**.
+**DoyStratOptimizer** is a project within the [**DoyVestment ecosystem**](https://github.com/DO-YAC/DoyVestment.public) and is designed for the automated optimization of trading strategies based on **technical analysis**.
 
 The goal of the project is to identify **optimal parameter values and thresholds** for rule-based trading strategies by systematically backtesting them on historical market data and evaluating their performance.
 
