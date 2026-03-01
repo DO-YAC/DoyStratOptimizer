@@ -20,7 +20,7 @@ Core concept:
 ---
 
 ### Visualisation
-![[Doc\StrategyOptimizer.jpg]]
+![DoyStratOptimizer Visualisation](Doc\StrategyOptimizer.jpg)
 
 ## How It Works
 
