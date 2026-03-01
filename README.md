@@ -19,6 +19,9 @@ Core concept:
 
 ---
 
+### Visualisation
+![[Doc\StrategyOptimizer.jpg]]
+
 ## How It Works
 
 ### 1. Generation-Based Backtesting
