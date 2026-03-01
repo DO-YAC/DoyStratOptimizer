@@ -13,10 +13,3 @@ After a Generation is tested, the score of the parameters is checked and if it r
 If the score is not reached, the top ten parameters will be added to the next generation and the generation will be filled with mutations of each paramaters of the previous top ten. Then the cycle continues until the desired score is reached, or stopped manually.
 
 ---
-## Values
-
-#### StrategyAssembly
-E:\Projekte\doyac\DoyStratOptimizer\DoyStrategyPlayground\bin\Debug\net10.0\DoyStrategyPlayground.dll
-
-#### HistoricalData
-E:\Projekte\doyac\DoyStratOptimizer\HistoricalDataGenerator\bin\Debug\net10.0\DummyData.json
